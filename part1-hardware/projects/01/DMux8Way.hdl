@@ -1,3 +1,17 @@
+/* CHIP DMux {
+    IN in, sel;
+    OUT a, b;
+
+    PARTS:
+        Nand(a=sel, b=sel, out=nsel);
+
+        Nand(a=in, b=nsel, out=an);
+        Nand(a=an, b=an, out=a);
+
+        Nand(a=in, b=sel, out=bn);
+        Nand(a=bn, b=bn, out=b);
+} */
+
 // This file is part of www.nand2tetris.org
 // and the book "The Elements of Computing Systems"
 // by Nisan and Schocken, MIT Press.
@@ -13,10 +27,19 @@
  *                            [0,  0,  0,  0,  0,  0, in,  0] if sel = 110
  *                            [0,  0,  0,  0,  0,  0,  0, in] if sel = 111
  */
+
 CHIP DMux8Way {
     IN in, sel[3];
     OUT a, b, c, d, e, f, g, h;
 
     PARTS:
-    //// Replace this comment with your code.
+        DMux(in=in, sel=sel[2], a=upper, b=lower);
+
+        DMux(in=upper, sel=sel[1], a=upperLeft, b=upperRight);
+        DMux(in=lower, sel=sel[1], a=lowerLeft, b=lowerRight);
+
+        DMux(in=upperLeft, sel=sel[0], a=a, b=b);
+        DMux(in=upperRight, sel=sel[0], a=c, b=d);
+        DMux(in=lowerLeft, sel=sel[0], a=e, b=f);
+        DMux(in=lowerRight, sel=sel[0], a=g, b=h);
 }
