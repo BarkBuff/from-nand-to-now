@@ -7,10 +7,17 @@
  * [a, b] = [in, 0] if sel = 0
  *          [0, in] if sel = 1
  */
+
 CHIP DMux {
     IN in, sel;
     OUT a, b;
 
     PARTS:
-    //// Replace this comment with your code.
+        Nand(a=sel, b=sel, out=notsel);
+
+        Nand(a=notsel, b=in, out=tmp1);
+        Nand(a=tmp1, b=tmp1, out=a);
+
+        Nand(a=sel, b=in, out=tmp2);
+        Nand(a=tmp2, b=tmp2, out=b);        
 }
