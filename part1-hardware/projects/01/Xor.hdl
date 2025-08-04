@@ -6,15 +6,23 @@
  * Exclusive-or gate:
  * if ((a and Not(b)) or (Not(a) and b)) out = 1, else out = 0
  */
- 
+
 CHIP Xor {
     IN a, b;
     OUT out;
 
     PARTS:
-        Not(in=a, out=nota);
-        Not(in=b, out=notb);
-        And(a=a, b=notb, out=aandnotb);
-        And(a=nota, b=b, out=notaandb);
-        Or(a=aandnotb, b=notaandb, out=out);
+        Nand(a=a, b=a, out=nota);
+
+        Nand(a=b, b=b, out=notb);
+
+        Nand(a=a, b=notb, out=tmp1);
+        Nand(a=tmp1, b=tmp1, out=aandnotb);
+
+        Nand(a=nota, b=b, out=tmp2);
+        Nand(a=tmp2, b=tmp2, out=notaandb);
+
+        Nand(a=aandnotb, b=aandnotb, out=notaand);
+        Nand(a=notaandb, b=notaandb, out=notband);
+        Nand(a=notaand, b=notband, out=out);
 }
