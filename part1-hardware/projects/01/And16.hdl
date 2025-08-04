@@ -7,10 +7,57 @@
  * for i = 0, ..., 15:
  * out[i] = a[i] And b[i] 
  */
+
 CHIP And16 {
     IN a[16], b[16];
     OUT out[16];
 
     PARTS:
-    //// Replace this comment with your code.
+        Nand(a=a[0], b=b[0], out=na0);
+        Nand(a=na0, b=na0, out=out[0]);
+
+        Nand(a=a[1], b=b[1], out=na1);
+        Nand(a=na1, b=na1, out=out[1]);
+
+        Nand(a=a[2], b=b[2], out=na2);
+        Nand(a=na2, b=na2, out=out[2]);
+
+        Nand(a=a[3], b=b[3], out=na3);
+        Nand(a=na3, b=na3, out=out[3]);
+
+        Nand(a=a[4], b=b[4], out=na4);
+        Nand(a=na4, b=na4, out=out[4]);
+
+        Nand(a=a[5], b=b[5], out=na5);
+        Nand(a=na5, b=na5, out=out[5]);
+
+        Nand(a=a[6], b=b[6], out=na6);
+        Nand(a=na6, b=na6, out=out[6]);
+
+        Nand(a=a[7], b=b[7], out=na7);
+        Nand(a=na7, b=na7, out=out[7]);
+
+        Nand(a=a[8], b=b[8], out=na8);
+        Nand(a=na8, b=na8, out=out[8]);
+
+        Nand(a=a[9], b=b[9], out=na9);
+        Nand(a=na9, b=na9, out=out[9]);
+
+        Nand(a=a[10], b=b[10], out=na10);
+        Nand(a=na10, b=na10, out=out[10]);
+
+        Nand(a=a[11], b=b[11], out=na11);
+        Nand(a=na11, b=na11, out=out[11]);
+
+        Nand(a=a[12], b=b[12], out=na12);
+        Nand(a=na12, b=na12, out=out[12]);
+
+        Nand(a=a[13], b=b[13], out=na13);
+        Nand(a=na13, b=na13, out=out[13]);
+
+        Nand(a=a[14], b=b[14], out=na14);
+        Nand(a=na14, b=na14, out=out[14]);
+
+        Nand(a=a[15], b=b[15], out=na15);
+        Nand(a=na15, b=na15, out=out[15]);
 }
