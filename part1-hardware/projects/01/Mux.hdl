@@ -6,10 +6,21 @@
  * Multiplexor:
  * if (sel = 0) out = a, else out = b
  */
+
 CHIP Mux {
     IN a, b, sel;
     OUT out;
 
     PARTS:
-    //// Replace this comment with your code.
+        Nand(a=sel, b=sel, out=selnot);
+
+        Nand(a=a, b=selnot, out=anandselnot);
+        Nand(a=anandselnot, b=anandselnot, out=selnotanda);
+
+        Nand(a=b, b=sel, out=bnandsel);
+        Nand(a=bnandsel, b=bnandsel, out=selandb);
+
+        Nand(a=selnotanda, b=selnotanda, out=not_selnotanda);
+        Nand(a=selandb, b=selandb, out=not_selandb);
+        Nand(a=not_selnotanda, b=not_selandb, out=out);
 }
