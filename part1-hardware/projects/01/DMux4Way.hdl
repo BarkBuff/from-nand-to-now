@@ -1,3 +1,13 @@
+/* CHIP DMux4Way {
+    IN in, sel[2];
+    OUT a, b, c, d;
+
+    PARTS:
+        DMux(in=in, sel=sel[1], a=upper, b=lower);
+        DMux(in=upper, sel=sel[0], a=a, b=b);
+        DMux(in=lower, sel=sel[0], a=c, b=d);
+} */
+
 // This file is part of www.nand2tetris.org
 // and the book "The Elements of Computing Systems"
 // by Nisan and Schocken, MIT Press.
@@ -9,10 +19,14 @@
  *                [0, 0, in, 0] if sel = 10
  *                [0, 0, 0, in] if sel = 11
  */
+
 CHIP DMux4Way {
     IN in, sel[2];
     OUT a, b, c, d;
 
     PARTS:
-    //// Replace this comment with your code.
+        DMux(in=in, sel=sel[1], a=upper, b=lower);
+
+        DMux(in=upper, sel=sel[0], a=a, b=b);
+        DMux(in=lower, sel=sel[0], a=c, b=d);
 }
