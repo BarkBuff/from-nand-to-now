@@ -5,11 +5,36 @@
 /**
  * Computes the sum of three bits.
  */
+
 CHIP FullAdder {
-    IN a, b, c;  // 1-bit inputs
-    OUT sum,     // Right bit of a + b + c
-        carry;   // Left bit of a + b + c
+    IN a, b, c;
+    OUT sum, carry;
 
     PARTS:
-    //// Replace this comment with your code.
+        Nand(a=a, b=b, out=notaandb);
+        Nand(a=a, b=notaandb, out=aandnotaandb);
+        Nand(a=b, b=notaandb, out=bandnotaandb);
+        Nand(a=aandnotaandb, b=bandnotaandb, out=axorb);
+
+        Nand(a=axorb, b=c, out=notaxorbandc);
+        Nand(a=axorb, b=notaxorbandc, out=axorbnota);
+        Nand(a=c, b=notaxorbandc, out=cnota);
+        Nand(a=axorbnota, b=cnota, out=sum);
+
+        Nand(a=a, b=b, out=notab);
+        Nand(a=notab, b=notab, out=aandb);
+
+        Nand(a=b, b=c, out=notbc);
+        Nand(a=notbc, b=notbc, out=bandc);
+
+        Nand(a=c, b=a, out=notca);
+        Nand(a=notca, b=notca, out=canda);
+
+        Nand(a=aandb, b=aandb, out=notaandb2);
+        Nand(a=bandc, b=bandc, out=notbandc2);
+        Nand(a=notaandb2, b=notbandc2, out=or1);
+
+        Nand(a=or1, b=or1, out=notor1);
+        Nand(a=canda, b=canda, out=notcanda);
+        Nand(a=notor1, b=notcanda, out=carry);
 }
