@@ -1,0 +1,36 @@
+# OS-generated files
+.DS_Store
+Thumbs.db
+
+# Editor/IDE-specific
+*.swp
+*.swo
+*.bak
+*.tmp
+*~
+
+# Java class files (from VMTranslator or JackCompiler)
+*.class
+
+# Output / compiled binary files
+*.hack        # Machine code output from assembler/compiler
+*.out         # Generic output logs
+*.obj
+*.exe
+
+# Simulator-generated comparison results
+*.cmp         # Expected output comparison files
+*.tst         # Test scripts (if using provided ones, keep only originals in course repo)
+*.out         # Test run outputs
+
+# VM Translator / Compiler generated intermediate files
+*.vm          # Virtual machine code (keep if you write VM code; ignore if generated)
+*.xml         # Generated XML parse trees or token output
+
+# Project-specific ignore patterns
+tools/**      # Ignore built simulator tools if added
+bin/**
+build/**
+
+# Logs
+*.log
