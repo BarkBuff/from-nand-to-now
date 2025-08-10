@@ -1,0 +1,24 @@
+# Git attributes file to define language detection and file handling
+
+# HDL (Hardware Description Language) files
+# Tell GitHub to treat .hdl files as Verilog for syntax highlighting
+# since HDL syntax is similar to Verilog/SystemVerilog
+*.hdl linguist-language=Verilog
+
+# Alternative: You could also use VHDL if the syntax is closer to VHDL
+# *.hdl linguist-language=VHDL
+
+# Ensure HDL files are detected as code (not data/text)
+*.hdl linguist-detectable=true
+
+# Mark HDL files as the primary language for this repository
+*.hdl linguist-vendored=false
+
+# Additional file type associations for nand2tetris project
+*.hack linguist-language=Assembly linguist-detectable=true
+*.asm linguist-language=Assembly linguist-detectable=true
+*.vm linguist-language=Assembly linguist-detectable=true
+*.jack linguist-language=Java linguist-detectable=true
+*.tst linguist-language=Text linguist-detectable=false
+*.cmp linguist-language=Text linguist-detectable=false
+*.out linguist-language=Text linguist-detectable=false
